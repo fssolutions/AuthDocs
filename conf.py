@@ -166,5 +166,7 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-
-
+# -- Add variables to each page -------------------------------------------
+rst_epilog = """
+.. |project_name| replace:: %s
+""" % (project)
