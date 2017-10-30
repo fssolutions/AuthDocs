@@ -28,6 +28,8 @@ Who is using it?
 * `IBM WebSphere <https://www.ibm.com/support/knowledgecenter/en/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/csec_oiddesc2.html>`_
 * `IBM Security Access Manager <https://www.ibm.com/support/knowledgecenter/en/SSPREK_9.0.0/com.ibm.isam.doc/config/concept/con_oidc_endpoints.html>`_
 * `SalesForce <https://developer.salesforce.com/page/Inside_OpenID_Connect_on_Force.com>`_
+* `U.S. Government Services SSO <https://developers.login.gov/openid-connect/>`_
+* `Brazilian Government Services SSO <https://www.governoeletronico.gov.br/documentos-e-arquivos/sdk-Brasil-cidadao.pdf/view>`_
 
 External Resources
 ********************************************************************************
