@@ -49,3 +49,6 @@ Videos
 Articles
 ================================================================================
 * `OpenID Connect explained <https://connect2id.com/learn/openid-connect>`_
+* `SAML2 vs JWT: Understanding OpenID Connect Part 1 <https://medium.com/@robert.broeckelmann/saml2-vs-jwt-understanding-openid-connect-part-1-fffe0d50f953>`_
+* `SAML2 vs JWT: Understanding OpenID Connect Part 2 <https://medium.com/@robert.broeckelmann/saml2-vs-jwt-understanding-openid-connect-part-2-f361ca867baa>`_
+* `Why the Future of Identity is OpenID Connect and not SAML <https://apicrazy.com/2014/08/18/why-the-future-of-identity-is-openid-connect-and-not-saml/>`_
