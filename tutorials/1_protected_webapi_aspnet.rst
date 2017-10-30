@@ -81,6 +81,12 @@ Create a new file named `DemoController.cs` and add the following code::
 Protecting an existing web API
 ********************************************************************************
 
+
+================================================================================
+
+
+================================================================================
+
 .. todo:: fill in details
   ..
   .. Install-Package IdentityServer3.AccessTokenValidation (https://github.com/IdentityServer/IdentityServer3.AccessTokenValidation)
@@ -92,11 +98,7 @@ Accessing the user identity in the API
 ********************************************************************************
 .. todo:: fill in details
 
-.. - create project
-.. - change port
 .. - Configure owin
-.. Install-Package Microsoft.Owin.Host.SystemWeb
-.. https://docs.microsoft.com/en-us/aspnet/aspnet/overview/owin-and-katana/owin-startup-class-detection
 .. - * Remove unused packages
 .. - Add web api
 .. - Protect

@@ -2,9 +2,10 @@ Welcome to IATec Authentication's documentation!
 ================================================
 .. toctree::
    :maxdepth: 2
-   :caption: About
+   :caption: Misc
 
-   about/protocol
+   misc/protocol
+   misc/credentials
 
 .. toctree::
   :maxdepth: 2
@@ -16,8 +17,6 @@ Welcome to IATec Authentication's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Miscelaneous
-
-
 
 
 .. Indices and tables
