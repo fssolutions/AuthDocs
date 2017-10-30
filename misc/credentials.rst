@@ -14,7 +14,67 @@ Endpoints
 * **Token Endpoint**: ``https://login-dev.sdasystems.org/connect/token``
 * **Introspection Endpoint**: ``https://login-dev.sdasystems.org/connect/introspect``
 
-Client Credentials
+Credentials for Clients
 ********************************************************************************
+There are some static client credentials that can be used in order to evaluate Identity Provider.
+These are categorized by the authentication flow they are allowed to perform.
 
-Development
+.. note:: For more information on authentication flows, check this `nice article <https://connect2id.com/learn/openid-connect>`_.
+
+Redirect URLs
+================================================================================
+All the static clients listed below are configured to use the following **redirect URLs**:
+
+* ``http://localhost:8080/``
+* ``http://localhost:8080/callback``
+* ``http://localhost:8080/auth/callback``
+* ``http://localhost:1234/``
+* ``http://localhost:1234/callback``
+* ``http://localhost:1234/auth/callback``
+* ``customscheme://localhost:8080/``
+* ``customscheme://localhost:8080/callback``
+* ``customscheme://localhost:1234/``
+* ``customscheme://localhost:1234/callback``
+* ``customscheme://m.iatec.com/``
+* ``customscheme://m.iatec.com/callback``
+
+
+Post-Logout Redirect URLs
+================================================================================
+In a simmilar way, all the static clients listed below are configured to use the following **post-logout redirect URLs**:
+
+* ``http://localhost:8080/``
+* ``http://localhost:8080/postlogout``
+* ``http://localhost:8080/auth/postlogout``
+* ``http://localhost:1234/``
+* ``http://localhost:1234/postlogout``
+* ``http://localhost:1234/auth/postlogout``
+* ``customscheme://localhost:8080/``
+* ``customscheme://localhost:8080/postlogout``
+* ``customscheme://localhost:1234/``
+* ``customscheme://localhost:1234/postlogout``
+* ``customscheme://m.iatec.com/``
+* ``customscheme://m.iatec.com/postlogout``
+
+Authorization Code Flow
+================================================================================
+* **Client ID**: ``democlient_codeflow``
+* **Client Secret**: ``clientsecret01`` (expires in january 1st of 2018).
+* **Allowed Scopes**: ``openid``, ``demoapi``, ``apidev``, ``profile``, ``email``, ``phone``, ``offline_access``
+
+Implicit Flow
+================================================================================
+* **Client ID**: ``democlient_implicitflow``
+* **Allowed Scopes**: ``openid``, ``demoapi``, ``apidev``, ``profile``, ``email``, ``phone``
+
+Hybrid Flow
+================================================================================
+* **Client ID**: ``democlient_hybridflow``
+* **Client Secret**: ``clientsecret01`` (expires in january 1st of 2018).
+* **Allowed Scopes**: ``openid``, ``demoapi``, ``apidev``, ``profile``, ``email``, ``phone``, ``offline_access``
+
+Client Credentials Flow
+================================================================================
+* **Client ID**: ``democlient_credentialsflow``
+* **Client Secret**: ``clientsecret01`` (expires in january 1st of 2018).
+* **Allowed Scopes**: ``demoapi``, ``apidev``, ``profile``, ``email``, ``phone``, ``offline_access``

@@ -1,3 +1,3 @@
 #!/bin/bash
-make html
+rm -r _build
 sphinx-autobuild --ignore ".git/*" . _build
