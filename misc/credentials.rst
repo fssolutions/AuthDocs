@@ -19,7 +19,7 @@ Credentials for Clients
 There are some static client credentials that can be used in order to evaluate Identity Provider.
 These are categorized by the authentication flow they are allowed to perform.
 
-.. note:: For more information on authentication flows, check this `nice article <https://connect2id.com/learn/openid-connect>`_.
+.. note:: For more information on OpenID Connect authentication flows, check this `nice article <https://connect2id.com/learn/openid-connect>`_.
 
 Redirect URLs
 ================================================================================
