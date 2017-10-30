@@ -13,3 +13,8 @@ Endpoints
 * **Authorization Endpoint**: ``https://login-dev.sdasystems.org/connect/authorize``
 * **Token Endpoint**: ``https://login-dev.sdasystems.org/connect/token``
 * **Introspection Endpoint**: ``https://login-dev.sdasystems.org/connect/introspect``
+
+Client Credentials
+********************************************************************************
+
+Development

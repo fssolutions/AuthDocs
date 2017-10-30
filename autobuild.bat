@@ -1,1 +1,2 @@
-sphinx-autobuild . _build 
+make html
+sphinx-autobuild --ignore ".git/*" . _build
