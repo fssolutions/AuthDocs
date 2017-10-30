@@ -1,4 +1,4 @@
-The Protocol OpenID Connect
+The OpenID Connect Protocol
 ################################################################################
 
 The |project_name| uses OpenID Connect.
