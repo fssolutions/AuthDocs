@@ -2,12 +2,14 @@ Protected web API with ASP.NET
 ################################################################################
 In this guide we will create a simple OWIN project and add to it's pipeline a simple web API and then add a middleware that provides authentication for the API methods.
 
-.. note:: If you already have an OWIN web API, you can skip some steps and check `Protecting an existing web API`__ directly.
+.. note:: If you already have an OWIN web API, you can advance some steps and check the section :ref:`ref-protect-existing` directly.
 
 Creating an OWIN web API
 ********************************************************************************
 
-.. note:: This guide was build using Visual Studio 2017.
+.. warning:: If you are using a different version or another editor/IDE,
+  please keep in mind that this guide was build using Visual Studio 2017,
+  and some features might be missing or in different places in different versions.
 
 Creating the project
 ================================================================================
@@ -83,6 +85,8 @@ Create a new file named `DemoController.cs` and add the following code:
           }
       }
   }
+
+.. _ref-protect-existing:
 
 Protecting an existing web API
 ********************************************************************************
