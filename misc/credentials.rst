@@ -19,7 +19,7 @@ Credentials for Clients
 There are some static client credentials that can be used in order to evaluate Identity Provider.
 These are categorized by the authentication flow they are allowed to perform.
 
-.. note:: For more information on OpenID Connect authentication flows, check this `nice article <https://connect2id.com/learn/openid-connect>`_.
+.. note:: For more information on OpenID Connect authentication flows, check this `nice article <https://connect2id.com/learn/openid-connect>`__.
 
 Redirect URLs
 ================================================================================
@@ -78,3 +78,23 @@ Client Credentials Flow
 * **Client ID**: ``democlient_credentialsflow``
 * **Client Secret**: ``clientsecret01`` (expires in january 1st of 2018).
 * **Allowed Scopes**: ``demoapi``, ``apidev``, ``profile``, ``email``, ``phone``, ``offline_access``
+
+
+Credentials for Users
+********************************************************************************
+At the moment only one test user is available.
+
+* **Username**: ``james.white``
+* **Password**: ``1844``
+
+Credentials for Scopes
+********************************************************************************
+Scopes might have credentials, which are used to validade a token received in an API call.
+
+* **Scope Name** (also called Client ID in some contexts): ``demoapi``.
+* **Scope Secret** (also called Client Secret in some contexts): ``secret123``
+  (expires in january 1st of 2018).
+
+Fixed Access Tokens
+********************************************************************************
+Some Access Tokens are available in order to

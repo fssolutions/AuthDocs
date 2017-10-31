@@ -2,7 +2,7 @@ Protected web API with ASP.NET
 ################################################################################
 In this guide we will create a simple OWIN project and add to it's pipeline a simple web API and then add a middleware that provides authentication for the API methods.
 
-.. note:: If you already have an OWIN web API, you can skip some steps and check `Protecting an existing web API`_ directly.
+.. note:: If you already have an OWIN web API, you can skip some steps and check `Protecting an existing web API`__ directly.
 
 Creating an OWIN web API
 ********************************************************************************
@@ -32,20 +32,23 @@ The Visual Studio will ask you for a template. Select **Empty**.
 
 Creating the Startup file
 ================================================================================
-First, you must install the following NuGet package: `Microsoft.Owin.Host.SystemWeb <https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/>`_.
+First, you must install the following NuGet package: `Microsoft.Owin.Host.SystemWeb <https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/>`__.
 
-.. note:: More information on installing NuGet packages can be found in the `NuGet Quickstart <https://docs.microsoft.com/en-us/nuget/quickstart/use-a-package>`_.
+.. note:: More information on installing NuGet packages can be found in the `NuGet Quickstart <https://docs.microsoft.com/en-us/nuget/quickstart/use-a-package>`__.
 
 In the *Solution Explorer*, right-click over the project and select *Add > OWIN Startup class*. A dialog will ask for the class name; this guide uses the name ``Startup``.
 
 .. note:: This menu item might not be available if using older versions of Visual Studio or other editors.
-  More information on creating OWIN Startup files can be found in the respective `ASP.NET Documentation <https://docs.microsoft.com/en-us/aspnet/aspnet/overview/owin-and-katana/owin-startup-class-detection>`_.
+  More information on creating OWIN Startup files can be found in the respective `ASP.NET Documentation <https://docs.microsoft.com/en-us/aspnet/aspnet/overview/owin-and-katana/owin-startup-class-detection>`__.
 
 Adding the WebApi middleware to the pipeline
 ================================================================================
-Please, install the following NuGet package: `Microsoft.AspNet.WebApi.Owin <https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/>`_.
+Please, install the following NuGet package: `Microsoft.AspNet.WebApi.Owin <https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/>`__.
 
-Then, you need to add this to ``Configure`` in the **Startup** file::
+Then, you need to add this to ``Configure`` in the **Startup** file:
+
+.. code-block:: C#
+  :linenos:
 
   public void Configuration(IAppBuilder app)
   {
@@ -56,7 +59,10 @@ Then, you need to add this to ``Configure`` in the **Startup** file::
 
 Creating a simple controller
 ================================================================================
-Create a new file named `DemoController.cs` and add the following code::
+Create a new file named `DemoController.cs` and add the following code:
+
+.. code-block:: C#
+  :linenos:
 
   using System;
   using System.Collections.Generic;
@@ -81,24 +87,54 @@ Create a new file named `DemoController.cs` and add the following code::
 Protecting an existing web API
 ********************************************************************************
 
-
+Denying Unauthenticated Requests
 ================================================================================
+If you alreay have a working web API that works on top of OWIN (e.g. the simple one that was build in the previous steps),
+you can avoid unwanted access by adding the attribute ``[Authorize]`` immediately before the action (method) or controller (class) that you want to protect.
+This will deny all unauthenticated access.
 
+.. note:: For more information on using the ``Authorize`` attribute, check the proper `documentation on MSDN <https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-and-authorization-in-aspnet-web-api#using-the-authorize-attribute>`__.
 
+Accepting Bearer Tokens in the Authorization Header
 ================================================================================
+The most common and recommended way to present a token to a protected API is to send a *Bearer Token* through the ``Authorization`` header.
 
-.. todo:: fill in details
-  ..
-  .. Install-Package IdentityServer3.AccessTokenValidation (https://github.com/IdentityServer/IdentityServer3.AccessTokenValidation)
-  .. Change Startup
-  .. Add Authorize
+After the client of your API obtains a token by using the one of the OIDC flows,
+it should present the token (e.g. ``tokenvalue0001``) to your API in the ``Authorization`` request header field
+in the following format: ``Bearer tokenvalue0001``.
 
+.. note:: More info on **Bearer Tokens** are available in the `RFC 6750 <https://tools.ietf.org/html/rfc6750>`__.
+
+In order to accept and process the provided token, your API the package
+`IdentityServer3.AccessTokenValidation <https://github.com/IdentityServer/IdentityServer3.AccessTokenValidation>`__
+and add the follogin highlighted lines into the startup class:
+
+.. code-block:: C#
+    :linenos:
+  :emphasize-lines: 3-5, 7-17
+
+  public void Configuration(IAppBuilder app)
+  {
+      const string AUTHORITY = "https://login-dev.sdasystems.org/";
+      const string SCOPE_NAME = "demoapi";
+      const string SCOPE_SECRET = "secret123"
+
+      var idsrvAuthOptions = new IdentityServerBearerTokenAuthenticationOptions
+      {
+          Authority = AUTHORITY,
+          ClientId = SCOPE_NAME,
+          ClientSecret = SCOPE_SECRET,
+          RequiredScopes = new[] { SCOPE_NAME },
+
+          // validates the token in the server in order to provide single-sign-off
+          ValidationMode = ValidationMode.ValidationEndpoint,
+      };
+      app.UseIdentityServerBearerTokenAuthentication(idsrvAuthOptions);
+
+      var httpConfig = new HttpConfiguration();
+      httpConfig.MapHttpAttributeRoutes();
+      app.UseWebApi(httpConfig);
+  }
 
 Accessing the user identity in the API
 ********************************************************************************
-.. todo:: fill in details
-
-.. - Configure owin
-.. - * Remove unused packages
-.. - Add web api
-.. - Protect
