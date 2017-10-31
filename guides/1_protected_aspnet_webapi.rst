@@ -1,6 +1,8 @@
-Protected web API with ASP.NET
+Protect an ASP.NET Web API
 ################################################################################
 In this guide we will create a simple OWIN project and add to it's pipeline a simple web API and then add a middleware that provides authentication for the API methods.
+
+The complete source code can be accessed in `GitHub <https://github.com/iatec-docs/Examples.Auth.DotNet>`__.
 
 .. note:: If you already have an OWIN web API, you can advance some steps and check the section :ref:`ref-protect-existing` directly.
 

@@ -1,27 +1,21 @@
-Welcome to IATec Authentication's documentation!
+Welcome to the IATec Authentication's documentation!
 ================================================
 .. toctree::
    :maxdepth: 2
    :caption: Misc
+   :glob:
 
-   misc/protocol
-   misc/credentials
+   IATec Docs Home <http://docs.iatec.com>
+   misc/*
 
 .. toctree::
   :maxdepth: 2
   :caption: Guides
+  :glob:
 
-  guides/1_protected_webapi_aspnet
+  guides/*
 
 
 .. toctree::
    :maxdepth: 2
    :caption: Miscelaneous
-
-
-.. Indices and tables
-.. ==================
-..
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
