@@ -95,6 +95,8 @@ Scopes might have credentials, which are used to validade a token received in an
 * **Scope Secret** (also called Client Secret in some contexts): ``secret123``
   (expires in january 1st of 2018).
 
-Fixed Access Tokens
+Access Tokens
 ********************************************************************************
-Some Access Tokens are available in order to
+A permanent Access Token is available in order to ease API configuration even without implementing the token retrieval.
+
+ * ``access_token+jameswhite``
