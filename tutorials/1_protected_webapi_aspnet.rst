@@ -93,6 +93,25 @@ If you alreay have a working web API that works on top of OWIN (e.g. the simple 
 you can avoid unwanted access by adding the attribute ``[Authorize]`` immediately before the action (method) or controller (class) that you want to protect.
 This will deny all unauthenticated access.
 
+As an example, the simple controller created in the previous topics could become the following:
+
+.. code-block:: C#
+  :linenos:
+  :emphasize-lines: 1
+
+  [Authorize]
+  [RoutePrefix("demo")]
+  public class DemoController : ApiController
+  {
+      [HttpGet, Route("test")]
+      public IHttpActionResult Test()
+      {
+          var claims = (User as ClaimsPrincipal).Claims;
+          var result = claims.Select(x => new { x.Type, x.Value });
+          return Ok(result);
+      }
+  }
+
 .. note:: For more information on using the ``Authorize`` attribute, check the proper `documentation on MSDN <https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-and-authorization-in-aspnet-web-api#using-the-authorize-attribute>`__.
 
 Accepting Bearer Tokens in the Authorization Header
@@ -105,12 +124,12 @@ in the following format: ``Bearer tokenvalue0001``.
 
 .. note:: More info on **Bearer Tokens** are available in the `RFC 6750 <https://tools.ietf.org/html/rfc6750>`__.
 
-In order to accept and process the provided token, your API the package
+In order to accept and process the provided token, you must reference in your API the package
 `IdentityServer3.AccessTokenValidation <https://github.com/IdentityServer/IdentityServer3.AccessTokenValidation>`__
-and add the follogin highlighted lines into the startup class:
+and add the following highlighted lines into the startup class:
 
 .. code-block:: C#
-    :linenos:
+  :linenos:
   :emphasize-lines: 3-5, 7-17
 
   public void Configuration(IAppBuilder app)
