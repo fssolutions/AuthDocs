@@ -114,6 +114,9 @@ As an example, the simple controller created in the previous topics could become
 
 .. note:: For more information on using the ``Authorize`` attribute, check the proper `documentation on MSDN <https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-and-authorization-in-aspnet-web-api#using-the-authorize-attribute>`__.
 
+Now, a request to the address http://localhost:4000/demo/test will be responded
+with the HTTP status code ``401``, that means Unauthorized, because authentication info was not provided in the request.
+
 Accepting Bearer Tokens in the Authorization Header
 ================================================================================
 The most common and recommended way to present a token to a protected API is to send a *Bearer Token* through the ``Authorization`` header.
@@ -155,5 +158,41 @@ and add the following highlighted lines into the startup class:
       app.UseWebApi(httpConfig);
   }
 
-Accessing the user identity in the API
+This way, when your API is called specifying a Bearer Token,
+your API will make a request to the IATec Authentication Server in order to
+"introspect" the token, that is, to retrieve the unmasked value for the token.
+
+If the token is valid, the current thread Principal will be set, and therefore
+the ``[Authorize]`` attribute will not abort the request.
+
+Retrieving token information in the API
 ********************************************************************************
+By default, all tokens issued by the IATec Authentication Server are by reference,
+it means that its value is masked. As stated previously, on each API request, another
+request will be made to the authentication server and the resulting information
+will be stored in the current thread Principal.
+
+.. note:: For more information about the ASP.NET Principal, check the `official documentation on MSDN <https://docs.microsoft.com/en-us/dotnet/standard/security/principal-and-identity-objects>`__.
+
+In order to access this, you can use the controller's ``User`` property.
+Type-casting it to a ``ClaimsPrincipal`` will enable you to retrieve the Access Token claims.
+
+The following modification on your controller exemplifies this. When requested,
+
+.. code-block:: C#
+  :linenos:
+
+  [Authorize]
+  [RoutePrefix("demo")]
+  public class DemoController : ApiController
+  {
+      [HttpGet, Route("test")]
+      public IHttpActionResult Test()
+      {
+          var claims = (User as ClaimsPrincipal).Claims;
+          var result = claims.Select(x => new { x.Type, x.Value });
+          return Ok(result);
+      }
+  }
+
+.. note:: For samples values of Access Tokens, check the section :ref:`ref-access-tokens`.

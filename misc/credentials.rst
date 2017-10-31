@@ -1,3 +1,5 @@
+.. _ref-credentials:
+
 Keys, Credentials and Endpoints
 ################################################################################
 
@@ -94,6 +96,8 @@ Scopes might have credentials, which are used to validade a token received in an
 * **Scope Name** (also called Client ID in some contexts): ``demoapi``.
 * **Scope Secret** (also called Client Secret in some contexts): ``secret123``
   (expires in january 1st of 2018).
+
+.. _ref-access-tokens:
 
 Access Tokens
 ********************************************************************************
