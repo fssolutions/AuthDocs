@@ -58,7 +58,7 @@ OpenID Connect Configuration
 Now its time to configure the application to use the library and connect in the
 IATec Authentication Server.
 
-Add a file in the directory **app** called auth.config.ts and paste in the following code:
+Add a file in the directory ``app`` called auth.config.ts and paste in the following code:
 
 .. code-block:: typescript
   :linenos:
@@ -73,7 +73,7 @@ Add a file in the directory **app** called auth.config.ts and paste in the follo
     postLogoutRedirectUri: window.location.origin + '/postlogout',
   }
 
-In the file **app.component.ts**, configure the OAuthService with the config object and create some helper methods for *login* and *logoff*, as follows:
+In the file ``app.component.ts``, configure the OAuthService with the config object and create some helper methods for *login* and *logoff*, as follows:
 
 .. code-block:: typescript
   :linenos:
@@ -123,7 +123,7 @@ Now we will configure the view. For that, change the highlighted line in the sam
     templateUrl: './app.component.html'
   })
 
-And create a new file named ``app.component.ts`` in the directory **app** with the following content:
+And create a new file named ``app.component.ts`` in the directory ``app`` with the following content:
 
 .. code-block:: html+ng2
   :linenos:
@@ -131,6 +131,54 @@ And create a new file named ``app.component.ts`` in the directory **app** with t
   <h1>Hello {{name}}</h1>
   <button (click)="this.login()">Login</button>
   <button (click)="this.logoff()">Logoff</button>
+
+
+Calling a protected API
+********************************************************************************
+We will create in our Angular application a button that calls a protected API.
+
+First, change the highlighted lines in the file ``app.component.ts``:
+
+.. code-block:: html+ng2
+  :linenos:
+  :emphasize-lines: 2, 3, 7-22
+
+  export class AppComponent {
+    apiresponse = "API not called yet.";
+    constructor(private oauthService: OAuthService, private http: Http) {
+      [...]
+    }
+    [...]
+    public callApi() {
+        var headers = new http_1.Headers({
+            "Authorization": "Bearer " + this.oauthService.getAccessToken()
+        });
+        this.http.get('http://localhost:4000/demo/test', { headers: headers })
+          .subscribe(function (resp) {
+              if (resp.status == 0)
+                  _this.apiresponse = "Could not connect to the API.";
+              else
+                  _this.apiresponse = "API response status:"
+                      + resp.status + " " + resp.statusText
+                      + "\n\n" + JSON.stringify(resp.json());
+          }, function (err) {
+              _this.apiresponse = "Error: " + err;
+          });
+    }
+    [...]
+  }
+
+And then add the following lines to the end of the file ``app.component.html``:
+
+.. code-block:: html+ng2
+  :linenos:
+
+  <button (click)="this.callApi()">Call API</button>
+  <pre style="white-space:pre-wrap">{{ apiresponse }}</pre>
+
+Now, when you click in the **Call API** button, the a request will be sent to the
+address ``http://localhost:4000/demo/test`` passing the access token on the ``Authorization`` header.
+The response result will be displayed as text below the buttons.
 
 More Info
 ********************************************************************************
