@@ -9,9 +9,9 @@ Welcome to IATec Authentication's documentation!
 
 .. toctree::
   :maxdepth: 2
-  :caption: Tutorials
+  :caption: Guides
 
-  tutorials/1_protected_webapi_aspnet
+  guides/1_protected_webapi_aspnet
 
 
 .. toctree::
