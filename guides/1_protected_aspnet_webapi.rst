@@ -1,10 +1,13 @@
 Protect an ASP.NET Web API
 ################################################################################
-In this guide we will create a simple OWIN project and add to it's pipeline a simple web API and then add a middleware that provides authentication for the API methods.
+In this guide we will create a simple OWIN project and add to it's pipeline a simple
+web API and then add a middleware that provides authentication for the API methods.
 
-The complete source code can be accessed in `GitHub <https://github.com/iatec-docs/Examples.Auth.DotNet>`__.
+The complete source code for the application that will be created in this guide
+is available on `GitHub <https://github.com/iatec-docs/Examples.Auth.DotNet/tree/master/AuthExamples.ProtectedWebApi>`__.
 
-.. note:: If you already have an OWIN web API, you can advance some steps and check the section :ref:`ref-protect-existing` directly.
+.. note:: If you already have an OWIN web API, you can advance some steps and
+  check the section :ref:`ref-protect-existing` directly.
 
 Creating an OWIN web API
 ********************************************************************************
@@ -173,7 +176,7 @@ the ``[Authorize]`` attribute will not abort the request.
 
 .. warning:: If you intend to call this API from a browser, you might need to
    activate CORS support in the API. Such is not inside the scope of this guide.
-   You may try using the following package: `Microsoft.AspNet.WebApi.Cors <https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Cors>`__.
+   You may try using the following package: `Microsoft.Owin.Cors <https://www.nuget.org/packages/Microsoft.Owin.Cors>`__.
 
 Retrieving token information in the API
 ********************************************************************************
