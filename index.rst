@@ -1,11 +1,11 @@
 Welcome to the IATec Authentication's documentation!
-================================================
+################################################################################
 .. toctree::
    :maxdepth: 2
    :caption: Misc
    :glob:
 
-   IATec Docs Home <http://docs.iatec.com>
+   IATec Documentation Home <http://docs.iatec.com>
    misc/*
 
 .. toctree::
