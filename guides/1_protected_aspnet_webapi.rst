@@ -171,6 +171,10 @@ your API will make a request to the IATec Authentication Server in order to
 If the token is valid, the current thread Principal will be set, and therefore
 the ``[Authorize]`` attribute will not abort the request.
 
+.. warning:: If you intend to call this API from a browser, you might need to
+   activate CORS support in the API. Such is not inside the scope of this guide.
+   You may try using the following package: `Microsoft.AspNet.WebApi.Cors <https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Cors>`__.
+
 Retrieving token information in the API
 ********************************************************************************
 By default, all tokens issued by the IATec Authentication Server are by reference,
