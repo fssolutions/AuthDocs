@@ -11,7 +11,6 @@ is available on `GitHub <https://github.com/iatec-docs/Examples.Auth.DotNet/tree
 
 Creating an OWIN web API
 ********************************************************************************
-
 .. warning:: If you are using a different version or another editor/IDE,
   please keep in mind that this guide was build using Visual Studio 2017,
   and some features might be missing or in different places in different versions.
@@ -136,6 +135,8 @@ in the following format: ``Bearer tokenvalue0001``.
 
 .. note:: More info on **Bearer Tokens** are available in the `RFC 6750 <https://tools.ietf.org/html/rfc6750>`__.
 
+.. warning:: The package ``IdentityServer3.AccessTokenValidation`` does not integrate with the ASP.NET Core 2.0 platform.
+
 In order to accept and process the provided token, you must reference in your API the package
 `IdentityServer3.AccessTokenValidation <https://github.com/IdentityServer/IdentityServer3.AccessTokenValidation>`__
 and add the following highlighted lines into the startup class:
@@ -175,9 +176,10 @@ If the token is valid, the current thread Principal will be set, and therefore
 the ``[Authorize]`` attribute will not abort the request.
 
 .. warning:: If you intend to call this API from a browser, you might need to
-   activate CORS support in the API. Such is not inside the scope of this guide.
-   You may try using the following package: `Microsoft.Owin.Cors <https://www.nuget.org/packages/Microsoft.Owin.Cors>`__.
+   activate CORS support in the API. Such is not in the scope of this guide.
+   You may try the following package: `Microsoft.Owin.Cors <https://www.nuget.org/packages/Microsoft.Owin.Cors>`__.
 
+   
 Retrieving token information in the API
 ********************************************************************************
 By default, all tokens issued by the IATec Authentication Server are by reference,
